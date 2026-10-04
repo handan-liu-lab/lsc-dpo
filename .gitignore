@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.cache/
+outputs/
+wandb/
+*.egg-info/
+/SOURCE_MAP.json
+/training_configs/PROVENANCE.json
+/ruff_cache/
+tests/
+eval/ASSETS.json
+/agent.md

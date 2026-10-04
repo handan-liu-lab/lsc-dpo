@@ -1,0 +1,47 @@
+# Replace model_name_or_path with your SFT checkpoint before training.
+
+# Model
+model_name_or_path: "put in your sft path name"
+torch_dtype: "bfloat16"
+attn_implementation: "sdpa"
+
+# Data
+dataset_mixer:
+  Anthropic/hh-rlhf: 1.0
+dataset_configs: ["helpful-base"]
+dataset_revisions:
+  Anthropic/hh-rlhf: "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa"
+dataset_splits: ["train", "test"]
+
+# LSC-DPO
+beta_0: 0.1
+tau_start: 0.45
+z_star: 0.4
+eta: 0.1
+
+# Training
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 2
+learning_rate: 5.0e-07
+optim: "adamw_torch"
+lr_scheduler_type: "cosine"
+warmup_ratio: 0.1
+num_train_epochs: 1
+max_length: 512
+max_prompt_length: 256
+dataloader_drop_last: true
+seed: 42
+
+# Memory and numerical checks
+bf16: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+non_finite_logits_handling: "error"
+
+# Evaluation and saving
+eval_strategy: "no"
+save_strategy: "no"
+output_dir: "outputs/llama3-hh-helpful-lsc"
+logging_steps: 1
+report_to: []

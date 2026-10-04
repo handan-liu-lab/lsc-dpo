@@ -1,0 +1,25 @@
+# HH protocol template: ICLR Section 4.2 / Figure 3 and Appendix E.2 (p. 19).
+# dpo-eval adapter fields; supply unreported runtime settings separately.
+# The external judge randomizes response order. Read README.md before use.
+dataset:
+  repo_id: Anthropic/hh-rlhf
+  data_dir: harmless-base
+models:
+  candidate: /path/to/qwen3-hh-harmless-checkpoint
+generation:
+  model_key: candidate
+  output_key: candidate
+  temperature: 0.7
+  top_p: 0.9
+inputs:
+  chosen: /path/to/hh-harmless-chosen.json
+  candidate: /path/to/qwen3-hh-harmless-model-outputs.json
+gpt4_oracle:
+  model: gpt-4-0613
+output:
+  results_file: outputs/hh/qwen3-harmless/judgments.jsonl
+  summary_file: outputs/hh/qwen3-harmless/summary.json
+judge:
+  candidate_keys:
+  - chosen
+  - candidate

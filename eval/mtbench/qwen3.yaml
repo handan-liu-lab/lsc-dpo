@@ -1,0 +1,16 @@
+# Historical dpo-eval adapter schema; FastChat supplies category temperatures and templates.
+precision: bf16
+mtbench:
+  model_name_or_path: /path/to/checkpoint
+  pretty_name: qwen3-lsc-dpo
+  output_dir: outputs/mtbench/qwen3-lsc-dpo
+  question_file: /path/to/dpo-eval/mtbench/questions.jsonl
+  reference_answer_file: /path/to/dpo-eval/mtbench/reference_answer/gpt-4-turbo.jsonl
+  judge_prompts_file: /path/to/dpo-eval/mtbench/judge_prompts.jsonl
+  judge_model: gpt-4-turbo
+  mode: single
+  num_choices: 1
+  num_gpus_per_model: 1
+  num_gpus_total: 1
+  generation:
+    max_new_tokens: 1024

@@ -1,0 +1,48 @@
+[project]
+name = "lsc-dpo"
+version = "0.1.0"
+requires-python = "==3.11.*"
+dependencies = [
+  "torch==2.7.1",
+  "transformers==4.51.0",
+  "datasets==2.21.0",
+  "accelerate==0.34.2",
+  "trl==0.10.1",
+  "huggingface_hub==0.30.2",
+  "hf-transfer==0.1.6",
+  "safetensors==0.4.5",
+  "sentencepiece==0.2.0",
+  "numpy==1.26.4",
+  "PyYAML==6.0.1",
+  "packaging==24.1",
+  "rich==13.7.1",
+  "wandb==0.17.5",
+]
+
+[dependency-groups]
+dev = ["pytest==8.2.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 119
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["F"]
+
+[tool.uv]
+package = false
+required-environments = [
+  "sys_platform == 'linux' and platform_machine == 'x86_64'",
+  "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128", marker = "sys_platform == 'linux'" }

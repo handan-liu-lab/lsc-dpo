@@ -1,0 +1,50 @@
+# Replace model_name_or_path with your SFT checkpoint before training.
+
+# Model
+model_name_or_path: "put in your sft path name"
+torch_dtype: "bfloat16"
+attn_implementation: "sdpa"
+
+# Data
+dataset_mixer:
+  HuggingFaceH4/ultrafeedback_binarized: 1.0
+dataset_revisions:
+  HuggingFaceH4/ultrafeedback_binarized: "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85"
+dataset_splits: ["train_prefs", "test_prefs"]
+
+# LSC-DPO
+beta_0: 0.01
+tau_start: 0.45
+z_star: 0.4
+eta: 0.1
+
+# Training
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-07
+optim: "adamw_torch"
+lr_scheduler_type: "cosine"
+warmup_ratio: 0.1
+num_train_epochs: 1
+max_length: 2048
+max_prompt_length: 1800
+dataloader_drop_last: true
+seed: 42
+
+# Memory and numerical checks
+bf16: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+non_finite_logits_handling: "error"
+
+# Evaluation and saving
+eval_strategy: "steps"
+eval_steps: 200
+per_device_eval_batch_size: 2
+save_strategy: "steps"
+save_steps: 200
+save_total_limit: 2
+output_dir: "outputs/llama3-ultrafeedback-lsc"
+logging_steps: 1
+report_to: []
