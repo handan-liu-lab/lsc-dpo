@@ -8,7 +8,7 @@ We study Direct Preference Optimization (DPO) from a loss-level geometric perspe
   <img src="assets/lsc_dpo.png" width="100%">
 </p>
 
-📄 **Paper:** [arXiv](TODO)
+📄 **Paper:** [arXiv](https://arxiv.org/abs/2610.07592)
 
 ## Installation
 
