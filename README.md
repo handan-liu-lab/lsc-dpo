@@ -23,7 +23,6 @@ uv sync --frozen
 ```
 
 ## Training
-
 The core LSC-DPO implementation is in `lsc_dpo/lsc_dpo_trainer.py`, with training arguments defined in `lsc_dpo/lsc_dpo_config.py`. We provide six LSC-DPO configurations for Llama3-8B and Qwen3-8B on UltraFeedback and the Anthropic-HH helpful-base and harmless-base subsets. The launch commands below use four GPUs.
 
 Before training, replace `put in your sft path name` in the corresponding YAML file under `training_configs/` with your SFT checkpoint path or Hugging Face model ID.
@@ -67,7 +66,6 @@ uv run --frozen accelerate launch --config_file fsdp/qwen3-fsdp.yaml \
 ```
 
 ## Evaluation
-
 We evaluate LSC-DPO on **AlpacaEval 2**, **MT-Bench**, and **Anthropic-HH**, following the evaluation protocols described in the paper.
 
 For AlpacaEval 2 and MT-Bench, we follow the official evaluation implementations:
@@ -82,13 +80,16 @@ For **Anthropic-HH**, we follow the pairwise evaluation protocol described in th
 
 Model-specific evaluation configurations are provided in [`eval/hh/`](eval/hh/).
 
-## License
-
-MIT; see [LICENSE](LICENSE). Files adapted from Hugging Face's
-[Alignment Handbook](https://github.com/huggingface/alignment-handbook) and
-[TRL](https://github.com/huggingface/trl) (Copyright 2023 The HuggingFace Team) remain under the
-[Apache License 2.0](LICENSES/Apache-2.0.txt): `data_utils/configs.py`, `data_utils/data.py`,
-`data_utils/model_utils.py`, `data_utils/tokenization.py`, the chat template in
-`data_utils/preprocessing.py`, and the scoring and metric logging in `lsc_dpo/lsc_dpo_trainer.py`.
-
 ## Citation
+
+```bibtex
+@misc{qu2026lscdpo,
+  title={LSC-DPO: Learning-Signal-Controlled Direct Preference Optimization},
+  author={Yang Qu and Yusheng Han and Chengjia Feng and Handan Liu},
+  year={2026},
+  eprint={2610.07592},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2610.07592}
+}
+```
